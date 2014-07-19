@@ -14,9 +14,5 @@ class Singleton(object):
             cls.instance = super(Singleton, cls).__new__(cls)
         return cls.instance
 
-x = Singleton()
-y = Singleton()
-
-print x is y
 
 
