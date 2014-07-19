@@ -41,8 +41,10 @@ def traverse_site(max_links = 10):
 
         try:
             status, response = http.request(url)
-        except Exception:
+        except Exception as e:
+            print "Exception", e
             continue
+
 
         #skip if not a webpage
         if status.get('content-type') != 'text/html':
@@ -106,7 +108,7 @@ def download_images(thread_name):
 
 
 if __name__ == "__main__":
-    root = "http://python.org"
+    root = "http://www.cnn.com"
 
     parsed_root = urlparse(root)
 
@@ -117,6 +119,8 @@ if __name__ == "__main__":
     singleton.downloaded = set()
 
     traverse_site()
+
+    print singleton.to_visit
 
     if not os.path.exists('images'):
         os.makedirs('images')
